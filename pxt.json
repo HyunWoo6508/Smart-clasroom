@@ -8,7 +8,10 @@
         "smarthome-kit": "github:tinkertanker/pxt-smarthome#v2.2.1",
         "SSD1306_OLED": "github:tinkertanker/pxt-oled-ssd1306#v2.0.13",
         "BME280": "github:makecode-extensions/bme280#v1.1.0",
-        "Environment-and-Science-IoT": "github:tinkertanker/pxt-iot-environment-kit#v5.1.7"
+        "Environment-and-Science-IoT": "github:tinkertanker/pxt-iot-environment-kit#v5.1.7",
+        "pxt-sonar": "github:Microsoft/pxt-sonar#v0.0.5",
+        "servo": "*",
+        "Huskylens": "github:dfrobot/pxt-dfrobot_huskylens#v2.0.5"
     },
     "files": [
         "main.blocks",

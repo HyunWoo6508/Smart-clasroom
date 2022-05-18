@@ -1,60 +1,126 @@
-let humidity = 0
 let dust = 0
-let servo = 0
+let humidity = 0
 let temperature = 0
 OLED.init(128, 64)
+music.setBuiltInSpeakerEnabled(true)
 basic.forever(function () {
-    temperature = input.temperature()
-    if (temperature < 20) {
-        pins.servoWritePin(AnalogPin.P2, 180)
-        pins.servoWritePin(AnalogPin.P14, 180)
-        pins.servoWritePin(AnalogPin.P15, 180)
-        basic.pause(2000)
-        servo = 0
-    } else {
-        if (temperature > 20) {
-            if (dust == 1 && humidity == 1) {
-            	
-            } else {
-                pins.servoWritePin(AnalogPin.P2, 0)
-                pins.servoWritePin(AnalogPin.P14, 0)
-                pins.servoWritePin(AnalogPin.P15, 0)
-                basic.pause(2000)
-                servo = 1
+    basic.pause(5000)
+    if (temperature > 36) {
+        basic.pause(5000)
+        if (temperature > 36) {
+            basic.pause(5000)
+            if (temperature > 36) {
+                basic.pause(5000)
+                if (temperature > 36) {
+                    basic.pause(5000)
+                    if (temperature > 36) {
+                        basic.pause(5000)
+                        if (temperature > 36) {
+                            basic.pause(5000)
+                            if (temperature > 36) {
+                                basic.pause(5000)
+                                if (temperature > 36) {
+                                    basic.pause(5000)
+                                    if (temperature > 36) {
+                                        basic.pause(5000)
+                                        if (temperature > 36) {
+                                            basic.pause(5000)
+                                            if (temperature > 36) {
+                                                basic.pause(5000)
+                                                for (let index = 0; index < 4; index++) {
+                                                    music.playMelody("C5 B A G F E D C ", 900)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-    basic.showString("" + (temperature))
+})
+basic.forever(function () {
+    basic.pause(5000)
+    if (temperature < 0) {
+        basic.pause(5000)
+        if (temperature > 0) {
+            basic.pause(5000)
+            if (temperature > 0) {
+                basic.pause(5000)
+                if (temperature > 0) {
+                    basic.pause(5000)
+                    if (temperature > 0) {
+                        basic.pause(5000)
+                        if (temperature > 0) {
+                            basic.pause(5000)
+                            if (temperature > 0) {
+                                basic.pause(5000)
+                                if (temperature > 0) {
+                                    basic.pause(5000)
+                                    if (temperature > 0) {
+                                        basic.pause(5000)
+                                        if (temperature > 0) {
+                                            basic.pause(5000)
+                                            if (temperature > 0) {
+                                                basic.pause(5000)
+                                                for (let index = 0; index < 4; index++) {
+                                                    music.playMelody("C D E F G A B C5 ", 900)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 })
 basic.forever(function () {
     if (Environment.octopus_BME280(Environment.BME280_state.BME280_humidity) >= 75) {
-        pins.servoWritePin(AnalogPin.P2, 180)
-        pins.servoWritePin(AnalogPin.P14, 180)
-        pins.servoWritePin(AnalogPin.P15, 180)
+        servos.P1.setAngle(180)
+        servos.P2.setAngle(180)
         humidity = 1
     } else {
         humidity = 0
     }
     // humidity
-    if (Environment.ReadDust(DigitalPin.P13, AnalogPin.P1) >= 81) {
-        pins.servoWritePin(AnalogPin.P2, 180)
-        pins.servoWritePin(AnalogPin.P14, 180)
-        pins.servoWritePin(AnalogPin.P15, 180)
+    if (Environment.ReadDust(DigitalPin.P14, AnalogPin.P9) >= 81) {
+        servos.P1.setAngle(180)
+        servos.P2.setAngle(180)
         dust = 1
     } else {
         dust = 0
     }
 })
 basic.forever(function () {
-    OLED.writeStringNewLine("dust" + Environment.ReadDust(DigitalPin.P13, AnalogPin.P1))
-    OLED.writeStringNewLine("humidity" + Environment.octopus_BME280(Environment.BME280_state.BME280_humidity))
-    if (servo == 0) {
-        OLED.writeStringNewLine("180 spined")
+    basic.clearScreen()
+    temperature = input.temperature()
+    if (temperature < 20) {
+        servos.P1.setAngle(180)
+        servos.P2.setAngle(180)
+        basic.pause(2000)
     } else {
-        if (servo == 1) {
-            OLED.writeStringNewLine("0 spined")
+        if (temperature > 20) {
+            if (dust == 1 && humidity == 1) {
+            	
+            } else {
+                servos.P1.setAngle(0)
+                servos.P2.setAngle(0)
+                basic.pause(2000)
+            }
         }
     }
+})
+basic.forever(function () {
+    OLED.writeStringNewLine("temperture" + temperature)
+    OLED.writeStringNewLine("dust" + Environment.ReadDust(DigitalPin.P14, AnalogPin.P9))
+    OLED.writeStringNewLine("humidity" + Environment.octopus_BME280(Environment.BME280_state.BME280_humidity))
     basic.pause(1000)
     OLED.clear()
 })
